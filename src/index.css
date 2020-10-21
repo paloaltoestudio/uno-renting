@@ -11,3 +11,11 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+/* Home styles */
+
+.form-home {
+  position: relative;
+  max-width: 600px;
+  margin: auto;
+}
