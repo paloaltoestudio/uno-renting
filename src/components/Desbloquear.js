@@ -2,12 +2,26 @@ import React, { useState, useContext } from 'react';
 
 const Desbloquear = props => {
     
-    const [ unlock, setUnlock ] = useState({lock: true});
+    const [ lock, setLock ] = useState({
+        EU001: true,
+        EU002: true,
+        EU003: true,
+        all: true,
+    });
 
-    const clickUnlock = (e) => {
+    const clickUnlock = (e, id) => {
         e.preventDefault();
 
-        setUnlock({lock: !unlock.lock})
+        if(id == 'all'){
+            setLock({
+                EU001: false,
+                EU002: false,
+                EU003: false,
+                all: false,
+            })
+        } else {
+            setLock({...lock, [id]: false})
+        }
     }
 
     return (
@@ -24,10 +38,10 @@ const Desbloquear = props => {
                         <h2>Desbloquea los patinetes</h2>
                         <p>Escoge los patinetes a desbloquear</p>
                         <ul className="list-unstyled">
-                            <li><span>EU001</span> <a href="#!" className={ unlock.lock ? 'link lock' : 'link unlock'}>Desbloquear</a></li>
-                            <li><span>EU002</span> <a href="#!" className={ unlock.lock ? 'link lock' : 'link unlock'}>Desbloquear</a></li>
-                            <li><span>EU003</span> <a href="#!" className={ unlock.lock ? 'link lock' : 'link unlock'}>Desbloquear</a></li>
-                            <li><a href="#!" className={ unlock.lock ? 'link lock' : 'link unlock'}>Desbloquear Todos</a></li>
+                            <li><span>EU001</span> <a href="#!" onClick={e => clickUnlock(e, 'EU001')} className={ lock['EU001'] ? 'link lock' : 'link unlock'}>{ lock['EU001'] ? 'Desbloquear' : 'Desbloqueado' }</a></li>
+                            <li><span>EU002</span> <a href="#!" onClick={e => clickUnlock(e, 'EU002')} className={ lock['EU002'] ? 'link lock' : 'link unlock'}>{ lock['EU002'] ? 'Desbloquear' : 'Desbloqueado' }</a></li>
+                            <li><span>EU003</span> <a href="#!" onClick={e => clickUnlock(e, 'EU003')} className={ lock['EU003'] ? 'link lock' : 'link unlock'}>{ lock['EU003'] ? 'Desbloquear' : 'Desbloqueado' }</a></li>
+                            <li><a href="#!" onClick={e => clickUnlock(e, 'all')} className={ lock['all'] ? 'link lock' : 'link unlock'}>{ lock['all'] ? 'Desbloquear Todos' : 'Desbloqueados' }</a></li>
                         </ul>
                     </div>
                 </div>

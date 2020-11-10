@@ -48,7 +48,7 @@ const Map = (props) => {
   }
 
   if(loadError) return <div className="error">loading error</div>;
-  if(!isLoaded) return 'loading map';
+  if(!isLoaded) return <div className="text-center">loading map</div>;
 
   return (
     <GoogleMap

@@ -11,10 +11,8 @@ const Home = (props) => {
     const [metodo, setMetodo] = useState(preBooking.metodo);
     const [lugar, setLugar] = useState(preBooking.zona_id);
     const [zona, setZona] = useState('');
-    const { trans, setLanguage } = useContext(LanguageContext);
+    const { transl } = useContext(LanguageContext);
     const { filterZone, zonas } = useContext(ZoneContext);
-    const { lang } = trans;
-    
 
     const handleMetodo = (e) => {
 
@@ -40,6 +38,7 @@ const Home = (props) => {
         setPreBooking({
             ...preBooking,
             direccion: e.target.value,
+            direccion_entrega: e.target.value,
         });
         console.log(preBooking.direccion)
     }
@@ -51,7 +50,8 @@ const Home = (props) => {
             setPreBooking({
                 ...preBooking,
                 zona: '',
-                zona_id: ''
+                zona_id: '',
+                metodo_entrega: metodo
             });
 
             console.log(preBooking)
@@ -59,32 +59,34 @@ const Home = (props) => {
 
             
         } else {
-        
-        setPreBooking({
-            ...preBooking,
-            zona: zona.nombre,
-            direccion: zona.direccion,
-            zona_id: zona.id
-        });
-        console.log(preBooking)
 
-        props.history.push('/zona');
-    }
+            setPreBooking({
+                ...preBooking,
+                zona: zona.nombre,
+                direccion: zona.direccion,
+                zona_id: zona.id,
+                metodo_entrega: metodo,
+                zona_entrega_id: zona.id,
+                direccion_entrega: zona.direccion,
+            });
+            console.log(preBooking)
+
+            props.history.push('/zona');
+        }
     }
 
     useEffect(() => {
         setZona(filterZone(lugar));
     }, [lugar, zona, filterZone])
 
-    const show = true;
 
     const renderAddressField = () => {
         if(metodo === 'parking_zone'){
             return(
                <div className="form-group">
-                   <label htmlFor="">{trans['Lugar de Recogida'][lang]}</label>
+                   <label htmlFor="">{transl('Lugar de Recogida')}</label>
                    <select onChange={(e) => handlePlace(e)} name="" id="" className="form-control" value={lugar} required>
-                       <option value="">{trans['Dirección de Recogida'][lang]}</option>
+                       <option value="">{transl('Dirección de Recogida')}</option>
                        {zonas && zonas.map(zona => {
                        return(
                        <option key={zona.id} value={zona.id}>{zona.nombre}</option>
@@ -96,37 +98,36 @@ const Home = (props) => {
         } else if(metodo === 'delivery' || preBooking.metodo === 'delivery') {
             return (
                 <div className="form-group">
-                    <label htmlFor="">{trans['Dirección de Recogida'][lang]}</label>
+                    <label htmlFor="">{transl('Dirección de Recogida')}</label>
                     <input onChange={(e) => handleAddress(e)} type="text" className="form-control" value={preBooking.direccion} />
                 </div>
             )
         }
     }
 
-
-
-
     return (
             
         <div className="container">
             <div className="wrapper">
                 <div className="left">
+                {metodo && metodo === 'parking_zone' ?
+                    (
+                        <div class="map_wrapper">
+                            <Map />
+                        </div>
+                    ) :
 
-                    <div class="map_wrapper">
-                        <Map />
-                    </div>
-
-                    {/* <img src="../images/scooter.jpg" alt=""/> */}
+                    <img src="../images/scooter.jpg" alt=""/> }
                 </div>
                 <div className="panel right">
                     <div className="form-home">
                     <form onSubmit={(e) => handleSubmit(e, metodo, zona)} className="text-left">
                     <div className="form-group">
-                        <label htmlFor="">{trans['Método de Recogida'][lang]}</label>
+                        <label htmlFor="">{transl('Método de Recogida')}</label>
                         <select onChange={(e) => handleMetodo(e)} name="" id="" className="form-control" value={metodo} required>
-                            <option value="">{trans['Selecciona un método de recogida'][lang]}</option>
-                            <option value="parking_zone">{trans['Recogida en Zona de Parqueo'][lang]}</option>
-                            <option value="delivery">{trans['Entrega a domicilio'][lang]}</option>
+                            <option value="">{transl('Selecciona un método de recogida')}</option>
+                            <option value="parking_zone">{transl('Recogida en Zona de Parqueo')}</option>
+                            <option value="delivery">{transl('Entrega a domicilio')}</option>
                         </select>
                     </div>
                     
@@ -136,21 +137,21 @@ const Home = (props) => {
                     
                     <ul className="list-unstyled">
                         <li>
-                            <h3>{trans['Dirección de Recogida'][lang]}</h3>
+                            <h3>{transl('Dirección de Recogida')}</h3>
                             <p>{zona.direccion}</p>
                         </li>
                         <li>
-                            <h3>{zona.patinetes} {trans['Patinetes Disponibles'][lang]}</h3>
+                            <h3>{zona.patinetes} {transl('Patinetes Disponibles')}</h3>
                         </li>
                         <li>
-                            <h3>{trans['Horario de Operación'][lang]}</h3>
+                            <h3>{transl('Horario de Operación')}</h3>
                             <p>{zona.horario}</p>
                         </li>
                     </ul>
                     
                     : '' }
                     
-                    <button className="btn btn-primary mb-2 form-control">{trans['Continuar'][lang]}</button>
+                    <button className="btn btn-primary mb-2 form-control">{transl('Continuar')}</button>
                     </form>
                     </div>
                 </div>

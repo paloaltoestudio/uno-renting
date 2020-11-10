@@ -20,7 +20,7 @@ const DetalleEntrega = props => {
     const minMinutes = Number(minTime[1]);
 
     const limitTime = hora_entrega.split(':');
-    const limitHour = minHour + Number(tiempo);
+    const limitHour = minHour;
     const limitMinute = minMinutes;
 
     const [finalTime, setFinalTime]  = useState(hora_entrega);
@@ -43,7 +43,7 @@ const DetalleEntrega = props => {
         
     }
 
-    const handleMetodo = (e) => {
+    const handleMethod = (e) => {
 
         console.log(e.target.value)
         setMetodo(e.target.value);
@@ -86,7 +86,7 @@ const DetalleEntrega = props => {
             return(
                <div className="form-group">
                    <label htmlFor="">Lugar de Entrega</label>
-                   <select onChange={(e) => handlePlace(e)} name="" id="" className="form-control" value={lugar} required>
+                   <select onChange={(e) => handlePlace(e)} name="" id="" className="form-control" value={preBooking.zona_entrega_id} required>
                        <option value="">Selecciona un lugar de Entrega</option>
                        {zonas && zonas.map(zona => {
                        return(
@@ -99,7 +99,7 @@ const DetalleEntrega = props => {
         } else if(metodo_entrega === 'delivery' || preBooking.metodo === 'delivery') {
             return (
                 <div className="form-group">
-                    <label htmlFor="">Dirección de Entrega</label>
+                    <label htmlFor="">Dirección de Recogida</label>
                     <input onChange={(e) => handleAddress(e)} type="text" className="form-control" value={preBooking.direccion_entrega} />
                 </div>
             )
@@ -116,7 +116,7 @@ const DetalleEntrega = props => {
 
         console.log(preBooking);
 
-        props.history.push('/checkout');
+        props.history.push('/detalle-patinete');
     }
 
     useEffect(() => {
@@ -137,8 +137,8 @@ const DetalleEntrega = props => {
                     <form onSubmit={e => handleSubmit(e)}>
                     <div className="form-group">
                         <label htmlFor="">Método de Entrega</label>
-                        <select onChange={e => handleChange(e)} name="metodo_entrega" id="" className="form-control" value={metodo_entrega} required>
-                        <option value="">Selecciona un método de recogida</option>
+                        <select onChange={e => handleMethod(e)} name="metodo_entrega" id="" className="form-control" value={metodo_entrega} required>
+                        <option value="">Selecciona un método de entrega</option>
                         <option value="parking_zone">Entrega en Zona de Parqueo</option>
                         <option value="delivery">Entrega a domicilio</option>
                         </select>
@@ -148,7 +148,7 @@ const DetalleEntrega = props => {
                     <ul className="list-unstyled">
                         {lugar != '' && zona &&  metodo_entrega === 'parking_zone' ?
                         <li>
-                            <h3>Dirección de Recogida</h3>
+                            <h3>Dirección de Entrega</h3>
                             <p>{zona.direccion}</p>
                         </li>
                         
@@ -159,18 +159,18 @@ const DetalleEntrega = props => {
                         <div className="form-group">
                             <label htmlFor="">Hora de Entrega</label>
                             <DatePicker
-                            className="form-control"
-                            name="hora_entrega"
-                            selected={startTime}
-                            onChange={e => changeTime(e)}
-                            showTimeSelect
-                            showTimeSelectOnly
-                            timeIntervals={30}
-                            timeCaption="Hora"
-                            dateFormat="H:mm"
-                            timeFormat="H:mm"
-                            minTime={setHours(setMinutes(new Date(), minMinutes),minHour)}
-                            maxTime={setHours(setMinutes(new Date(), limitMinute),limitHour)}
+                                className="form-control"
+                                name="hora_entrega"
+                                selected={startTime}
+                                onChange={e => changeTime(e)}
+                                showTimeSelect
+                                showTimeSelectOnly
+                                timeIntervals={30}
+                                timeCaption="Hora"
+                                dateFormat="H:mm"
+                                timeFormat="H:mm"
+                                minTime={setHours(setMinutes(new Date(), minMinutes), 8)}
+                                maxTime={setHours(setMinutes(new Date(), limitMinute),limitHour)}
                             />
                         </div> 
 

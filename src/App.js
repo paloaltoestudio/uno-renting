@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import ZoneContextProvider from './contexts/ZoneContext';
 import Header from './components/Header';
+import Footer from './components/Footer';
 import Home from './components/Home';
 import DetalleZona from './components/DetalleZona';
 import Entrega from './components/Entrega';
@@ -10,14 +11,13 @@ import Desbloquear from './components/Desbloquear';
 import PreBookingContextProvider from './contexts/PreBookingContext';
 import LanguageContextProvider from './contexts/LanguageContext';
 import { CSSTransition } from 'react-transition-group';
+import DetallePatinete from './components/DetallePatinete';
 
 
 
 function App() {
   return (
     <Router>
-    <div>
-
       <LanguageContextProvider>
 
         <Header/>
@@ -56,6 +56,16 @@ function App() {
                   <Entrega />
                 </CSSTransition>
               </Route>
+              <Route path="/detalle-patinete">
+                <CSSTransition 
+                    in={true} 
+                    appear={true}
+                    timeout={1000}
+                    classNames="transition"
+                >
+                  <DetallePatinete />
+                </CSSTransition>
+              </Route>
               <Route path="/checkout">
                 <CSSTransition 
                     in={true} 
@@ -76,18 +86,15 @@ function App() {
                   <Desbloquear />
                 </CSSTransition>
               </Route>
+
+              <Footer />
             
           </PreBookingContextProvider>
         </ZoneContextProvider>
         </LanguageContextProvider>
-    </div>
-
+    
     
 
-    <footer>
-      <p className="text-center">Todos los derechos reservados. Uno Smart Mobility OU®</p>
-    </footer>
-    
     </Router>
   );
 }

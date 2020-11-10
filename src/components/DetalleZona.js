@@ -2,6 +2,8 @@ import React, {useContext, useState, useEffect} from 'react';
 import { withRouter, Link } from 'react-router-dom';
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import setHours from "date-fns/setHours";
+import setMinutes from "date-fns/setMinutes";
 import { PreBookingContext } from '../contexts/PreBookingContext';
 import { ZoneContext } from '../contexts/ZoneContext';
 
@@ -126,9 +128,9 @@ const DetalleZona = (props) => {
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        let hour = hora_recogida.split(':');
-        hour[0] = Number(hour[0]) + Number(tiempo);
-        const hora_entrega = hour.join(':')
+        //let hour = hora_recogida.split(':');
+        //hour[0] = Number(hour[0]) + Number(tiempo);
+        //onst hora_entrega = hour.join(':')
 
         setPreBooking({
             ...preBooking,
@@ -137,8 +139,7 @@ const DetalleZona = (props) => {
             numero_cargadores, 
             numero_patinetes, 
             fecha_recogida, 
-            hora_recogida,
-            hora_entrega
+            hora_recogida
         });
 
         console.log(preBooking);
@@ -193,10 +194,11 @@ const DetalleZona = (props) => {
                                 <label className="small" htmlFor="">Tiempo de Reserva</label>
                                 <select onChange={(e) => handleChange(e)} name="tiempo" id="" className="form-control" value={tiempo} required>
                                     <option value="">Selecciona el tiempo</option> 
-                                    <option value="2">2 horas</option> 
-                                    <option value="4">4 horas</option> 
-                                    <option value="6">6 horas</option> 
-                                    <option value="8">8 horas</option> 
+                                    <option value="1">1 día</option> 
+                                    <option value="2">2 días</option> 
+                                    <option value="4">4 días</option> 
+                                    <option value="6">6 días</option> 
+                                    <option value="8">8 días</option> 
                                 </select>
                             </div> 
                         </div>
@@ -240,6 +242,8 @@ const DetalleZona = (props) => {
                                 dateFormat="H:mm"
                                 timeFormat="H:mm"
                                 value={hora_recogida}
+                                minTime={setHours(setMinutes(new Date(), 0), 8)}
+                                maxTime={setHours(setMinutes(new Date(), 0), 22)}
                                 required
                                 />
                             </div> 

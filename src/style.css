@@ -1,3 +1,12 @@
+@font-face {
+  font-family: 'DKBuntaro';
+  font-style: normal;
+  font-weight: 400;
+  src: url("./fonts/dk_buntaro-webfont.eot");
+  /* IE9 Compat Modes */
+  src: local("DK Buntaro"), local("DKBuntaro"), url("./fonts/dk_buntaro-webfont.woff2") format("woff2"), url("./fonts/dk_buntaro-webfont.woff") format("woff"), url("./fonts/dk_buntaro-webfont.ttf") format("truetype");
+}
+
 body {
   background: #f3de34 url("./images/body_bg.jpg") no-repeat;
   background-size: cover;
@@ -24,6 +33,11 @@ body {
 h2 {
   margin-top: 40px;
   margin-bottom: 40px;
+}
+
+.title {
+  font-family: "DKBuntaro";
+  font-size: 45px;
 }
 
 .map_wrapper {
@@ -154,6 +168,32 @@ h2 {
 .transition-appear-active {
   opacity: 1;
   right: 0;
+}
+
+.scooter_detail h3 {
+  text-transform: uppercase;
+  font-weight: bold;
+  margin-top: 20px;
+}
+
+.scooter_detail p {
+  font-size: 18px;
+  margin-bottom: 20px;
+}
+
+.scooter_detail form .form-check {
+  margin-bottom: 20px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #eee;
+}
+
+.scooter_detail form .form-check label {
+  font-weight: normal;
+  text-transform: none;
+}
+
+.scooter_detail form .form-check input {
+  top: 2px;
 }
 
 .checkout_right .checkout_wrapper, .checkout_left .checkout_wrapper {
