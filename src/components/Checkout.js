@@ -1,8 +1,11 @@
 import React, { useState, useContext } from 'react';
 import { Link } from 'react-router-dom';
+import { PreBookingContext } from '../contexts/PreBookingContext';
 import segway from '../images/segway.png';
 
 const Checkout = props => {
+
+    const { preBooking, setPreBooking } = useContext(PreBookingContext);
 
     return (
         <div className="container">
@@ -13,15 +16,14 @@ const Checkout = props => {
                         <img src={segway} alt=""/>
                         
                         <ul className="list-unstyled">
-                        <li><span>Día de recogida:</span> agosto 28, 2020</li>
-                        <li><span>Hora de recogida:</span> 9:00 AM</li>
-                        <li><span>Lugar de recogida:</span> Zona de parqueo 1</li>
-                        <li><span>Dirección de recogida:</span> Carrer d'Estruc - Barcelona</li>
-                        <li><span>Residente:</span> Si</li>
-                        <li><span>Período:</span> 4 Horas</li>
-                        <li><span>Número de patinetes:</span> 3</li>
-                        <li><span>Código de patinetes:</span> EU001, EU100, EU234</li>
-                        <li><span>Número de cargadores:</span> 2</li>
+                        <li><span>Día de recogida:</span> {preBooking.fecha_recogida} </li>
+                        <li><span>Hora de recogida:</span> {preBooking.hora_recogida}</li>
+                        <li><span>Lugar de recogida:</span> {preBooking.zona}</li>
+                        <li><span>Dirección de recogida:</span> {preBooking.direccion}</li>
+                        <li><span>Residente:</span> {preBooking.residente}</li>
+                        <li><span>Período:</span> {preBooking.tiempo} día(s)</li>
+                        <li><span>Número de patinetes:</span> {preBooking.numero_patinetes}</li>
+                        <li><span>Número de cargadores:</span> {preBooking.numero_cargadores}</li>
                         
                         </ul>
                     </div>
@@ -40,7 +42,7 @@ const Checkout = props => {
                         <div className="totals">
                         <p className="subtotal">
                         <span>Subtotal</span>
-                        39.00€
+                        {preBooking.precio}.00€
                         </p>
                         
                         <p className="taxes">
@@ -50,7 +52,7 @@ const Checkout = props => {
                         
                         <p className="total">
                         <span>Total</span>
-                        <span>39.00€</span>
+                        <span>{preBooking.precio}.00€</span>
                         </p>
                         </div>
 

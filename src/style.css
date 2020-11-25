@@ -196,6 +196,16 @@ h2 {
   top: 2px;
 }
 
+.price {
+  text-align: center;
+}
+
+.price p {
+  color: #8bac2d;
+  font-size: 30px;
+  font-weight: bold;
+}
+
 .checkout_right .checkout_wrapper, .checkout_left .checkout_wrapper {
   background: #fff;
   border-radius: 20px;

@@ -20,7 +20,8 @@ const PreBookingContextProvider = props => {
         zona_entrega_id: '',
         direccion_entrega: '',
         hora_entrega: '',
-        conductores_patinetes: []
+        conductores_patinetes: [],
+        precio: 0
 
     });
 

@@ -213,8 +213,17 @@ h2 {
             }
         }
     }
+
 }
 
+.price {
+    text-align: center;
+    p {
+        color: $green;
+        font-size: 30px;
+        font-weight: bold;
+    }
+}
 // Checkout
 .checkout_right, .checkout_left {
     .checkout_wrapper {

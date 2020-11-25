@@ -123,7 +123,20 @@ const DetalleZona = (props) => {
     }
     scooterNumberOptions();
 
-    
+
+    // Calculate price
+    let { precio } = preBooking;
+    precio = (tiempo * 10) * numero_patinetes;
+
+    useEffect(() => {
+        setPreBooking({
+            ...preBooking,
+            precio
+        })
+
+        console.log(precio)
+    }, [precio])
+
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -146,6 +159,7 @@ const DetalleZona = (props) => {
 
         props.history.push('/entrega');
     }
+    
 
     return (
         <div className="container">
@@ -189,6 +203,32 @@ const DetalleZona = (props) => {
                                 </select>
                             </div>
                         </div>
+                        
+                        <div className="col-sm-4">
+                            <div className="form-group">
+                                <label className="small" htmlFor="">Número de Patinetes</label>
+                                
+                                <select onChange={(e) => handleChange(e)} name="numero_patinetes" id="" className="form-control" value={numero_patinetes} required >
+                                    <option value="">Selecciona el número</option> 
+                                    { items }
+                                </select>
+                            </div> 
+                        </div>
+
+                        <div className="col-sm-4">
+                            { numero_patinetes && numero_patinetes > 0 ?  
+                            <div className="form-group">
+                                <label className="small" htmlFor="">Número de Cargadores</label>
+                                <select onChange={(e) => handleChange(e)} name="numero_cargadores" id="" className="form-control" value={numero_cargadores} required>
+                                    <option value="">Cuántos Cargadores</option> 
+                                    { itemsChargers }
+                                </select>
+                            </div>
+
+                            : ''
+                            }
+                        </div>
+
                         <div className="col-sm-4">
                             <div className="form-group">
                                 <label className="small" htmlFor="">Tiempo de Reserva</label>
@@ -199,16 +239,6 @@ const DetalleZona = (props) => {
                                     <option value="4">4 días</option> 
                                     <option value="6">6 días</option> 
                                     <option value="8">8 días</option> 
-                                </select>
-                            </div> 
-                        </div>
-                        <div className="col-sm-4">
-                            <div className="form-group">
-                                <label className="small" htmlFor="">Número de Patinetes</label>
-                                
-                                <select onChange={(e) => handleChange(e)} name="numero_patinetes" id="" className="form-control" value={numero_patinetes} required >
-                                    <option value="">Selecciona el número</option> 
-                                    { items }
                                 </select>
                             </div> 
                         </div>
@@ -248,21 +278,12 @@ const DetalleZona = (props) => {
                                 />
                             </div> 
                         </div>
-                        <div className="col-sm-4">
-                            { numero_patinetes && numero_patinetes > 0 ?  
-                            <div className="form-group">
-                                <label className="small" htmlFor="">Número de Cargadores</label>
-                                <select onChange={(e) => handleChange(e)} name="numero_cargadores" id="" className="form-control" value={numero_cargadores} required>
-                                    <option value="">Cuántos Cargadores</option> 
-                                    { itemsChargers }
-                                </select>
-                            </div>
-
-                            : ''
-                            }
-                        </div>
+                        
                     </div>
                     
+                    <div className="price">
+                        <p>Tarifa { precio } €</p>
+                    </div>
 
                     <button className="btn btn-primary mb-2 form-control">Continuar</button>
                 </form>

@@ -8,18 +8,48 @@ const DetallePatinete = (props) => {
     const [ drivers, setDrivers ] = useState([]);
 
     const handleChange = (e) => {
-        console.log(e.target.name)
-        setDrivers([
-            {nombre_conductor: e.target.value}
-        ]);
-
-        console.log(drivers);
+        const field = e.target.name;
+        drivers[field] = { nombre: e.target.value}
     }
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        
+        setDrivers([
+            ...drivers
+        ])
+
+        setPreBooking(
+            {
+                ...preBooking,
+                conductores_patinetes: drivers
+            }
+        )
+        console.log(drivers)
 
         props.history.push('/checkout');
+    }
+    
+
+    // Fieldset for drivers based on scooter amount
+    const driversFields = [];
+    const driversAmount = Number(preBooking.numero_patinetes);
+    let i;
+    
+    for( i = 1; i < driversAmount + 1 ; i++){
+
+        driversFields.push(
+            <div>
+                <div className="form-group">
+                    <label>Conductor {i}</label>
+                    <input onChange={handleChange} type="text" name={'conductor_' + i} className="form-control" required />
+                </div>
+                <div class="form-check">
+                  <input type="checkbox" class="form-check-input" id={'acceptance_' + i} required />
+                  <label className="form-check-label" for={'acceptance_' + i}>Es mayor de 16 años</label>
+                </div>
+            </div>
+        )
     }
 
     return (
@@ -34,30 +64,8 @@ const DetallePatinete = (props) => {
                     <p>Por favor ingresa el conductor de cada patinete</p>
 
                     <form onSubmit={(e) => {handleSubmit(e)}}>
-                            <div className="form-group">
-                                <label>Conductor 1</label>
-                                <input onChange={handleChange} type="text" name="driver_1" className="form-control" required />
-                            </div>
-                            <div class="form-check">
-                              <input type="checkbox" class="form-check-input" id="acceptance_1" required />
-                              <label className="form-check-label" for="acceptance_1">Es mayor de 16 años</label>
-                            </div>
-                            <div className="form-group">
-                                <label>Conductor 2</label>
-                                <input onChange={(e) => handleChange(e)} type="text" className="form-control" required />
-                            </div>
-                            <div class="form-check">
-                              <input type="checkbox" class="form-check-input" id="acceptance_2" required />
-                              <label className="form-check-label" for="acceptance_2">Es mayor de 16 años</label>
-                            </div>
-                            <div className="form-group">
-                                <label>Conductor 3</label>
-                                <input onChange={handleChange} type="text" className="form-control" required />
-                            </div>
-                            <div class="form-check">
-                              <input type="checkbox" class="form-check-input" id="acceptance_3" required />
-                              <label className="form-check-label" for="acceptance_3">Es mayor de 16 años</label>
-                            </div>
+                            
+                        { driversFields }
 
                         <button className="btn btn-primary mb-2 form-control">Continuar</button>
                     </form>
