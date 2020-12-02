@@ -64,6 +64,7 @@ h2 {
 
 .link {
   background: #8bac2d;
+  height: auto;
   color: #fff;
   text-transform: uppercase;
   font-weight: bold;
@@ -212,6 +213,19 @@ h2 {
   -webkit-box-shadow: 0 0 20px rgba(47, 48, 0, 0.2);
           box-shadow: 0 0 20px rgba(47, 48, 0, 0.2);
   padding: 20px 40px;
+}
+
+.checkout_right .checkout_wrapper .link.pay, .checkout_left .checkout_wrapper .link.pay {
+  margin-bottom: 0;
+}
+
+.checkout_right .checkout_wrapper .form-control:focus, .checkout_left .checkout_wrapper .form-control:focus {
+  background: #8bac2d;
+  color: #fff;
+  outline: none;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+  border: none;
 }
 
 .checkout_left {

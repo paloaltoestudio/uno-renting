@@ -82,6 +82,7 @@ h2 {
 
 .link {
     background: $green;
+    height: auto;
     color: #fff;
     text-transform: uppercase;
     font-weight: bold;
@@ -231,6 +232,18 @@ h2 {
         border-radius: 20px;
         box-shadow: 0 0 20px rgba(47, 48, 0, 0.2);
         padding: 20px 40px;
+
+        .link.pay {
+            margin-bottom: 0;
+        }
+
+        .form-control:focus {
+            background: $green;
+            color: #fff;
+            outline: none;
+            box-shadow: none;
+            border: none;
+        }
     }
 }
 

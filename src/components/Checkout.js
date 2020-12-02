@@ -1,11 +1,22 @@
 import React, { useState, useContext } from 'react';
+import { loadStripe } from '@stripe/stripe-js';
+import { Elements, CardElement, useStripe, useElements } from '@stripe/react-stripe-js';
 import { Link } from 'react-router-dom';
+import Pagos from './Pagos';
 import { PreBookingContext } from '../contexts/PreBookingContext';
 import segway from '../images/segway.png';
+
+const stripePromise = loadStripe('pk_test_MQVSk4TjwXbH6jhCiKL7kDLc002tjZpivx');
+
 
 const Checkout = props => {
 
     const { preBooking, setPreBooking } = useContext(PreBookingContext);
+    const [user, setUser] = useState({
+        name: 'Carlos Pérez',
+        email: 'carlos@gmail.com',
+        phone: '+34 12345678'
+    })
 
     return (
         <div className="container">
@@ -34,9 +45,9 @@ const Checkout = props => {
                         <h3>Información de Facturación</h3>
                         
                         <ul className="list-unstyled personal_data">
-                            <li>Carlos Pérez</li>
-                            <li>carlos@gmail.com</li>
-                            <li>+34 12345678</li>
+                            <li>{user.name}</li>
+                            <li>{user.email}</li>
+                            <li>{user.phone}</li>
                         </ul>
                         
                         <div className="totals">
@@ -56,7 +67,11 @@ const Checkout = props => {
                         </p>
                         </div>
 
-                        <Link to="/desbloquear" className="link">Paga con Stripe</Link>
+                        <h3>Pagar</h3>
+                        
+                        <Pagos user={user} />
+
+                        {/* <Link to="/desbloquear" className="link">Paga con Stripe</Link> */}
                     </div>
                 </div>
             </div>
