@@ -141,9 +141,6 @@ const Home = (props) => {
                             <p>{zona.direccion}</p>
                         </li>
                         <li>
-                            <h3>{zona.patinetes} {transl('Patinetes Disponibles')}</h3>
-                        </li>
-                        <li>
                             <h3>{transl('Horario de Operación')}</h3>
                             <p>{zona.horario}</p>
                         </li>

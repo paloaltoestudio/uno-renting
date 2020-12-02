@@ -8,6 +8,7 @@ import DetalleZona from './components/DetalleZona';
 import Entrega from './components/Entrega';
 import Checkout from './components/Checkout';
 import Desbloquear from './components/Desbloquear';
+import Pagos from './components/Pagos';
 import PreBookingContextProvider from './contexts/PreBookingContext';
 import LanguageContextProvider from './contexts/LanguageContext';
 import { CSSTransition } from 'react-transition-group';
@@ -84,6 +85,16 @@ function App() {
                     classNames="transition"
                 >
                   <Desbloquear />
+                </CSSTransition>
+              </Route>
+              <Route path="/pagos">
+                <CSSTransition 
+                    in={true} 
+                    appear={true}
+                    timeout={1000}
+                    classNames="transition"
+                >
+                  <Pagos />
                 </CSSTransition>
               </Route>
 

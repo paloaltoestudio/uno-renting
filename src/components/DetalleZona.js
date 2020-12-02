@@ -149,7 +149,7 @@ const DetalleZona = (props) => {
             ...preBooking,
             residente,
             tiempo,
-            numero_cargadores, 
+            numero_cargadores: numero_patinetes, 
             numero_patinetes, 
             fecha_recogida, 
             hora_recogida
@@ -204,30 +204,7 @@ const DetalleZona = (props) => {
                             </div>
                         </div>
                         
-                        <div className="col-sm-4">
-                            <div className="form-group">
-                                <label className="small" htmlFor="">Número de Patinetes</label>
-                                
-                                <select onChange={(e) => handleChange(e)} name="numero_patinetes" id="" className="form-control" value={numero_patinetes} required >
-                                    <option value="">Selecciona el número</option> 
-                                    { items }
-                                </select>
-                            </div> 
-                        </div>
-
-                        <div className="col-sm-4">
-                            { numero_patinetes && numero_patinetes > 0 ?  
-                            <div className="form-group">
-                                <label className="small" htmlFor="">Número de Cargadores</label>
-                                <select onChange={(e) => handleChange(e)} name="numero_cargadores" id="" className="form-control" value={numero_cargadores} required>
-                                    <option value="">Cuántos Cargadores</option> 
-                                    { itemsChargers }
-                                </select>
-                            </div>
-
-                            : ''
-                            }
-                        </div>
+                        
 
                         <div className="col-sm-4">
                             <div className="form-group">
@@ -278,7 +255,21 @@ const DetalleZona = (props) => {
                                 />
                             </div> 
                         </div>
-                        
+
+
+                        { tiempo && fecha_recogida && hora_recogida ?  
+                        <div className="col-sm-4">
+                            <div className="form-group">
+                                <label className="small" htmlFor="">Número de Patinetes</label>
+                                
+                                <select onChange={(e) => handleChange(e)} name="numero_patinetes" id="" className="form-control" value={numero_patinetes} required >
+                                    <option value="">Selecciona el número</option> 
+                                    { items }
+                                </select>
+                            </div> 
+                        </div>
+                        : ''
+                        }
                     </div>
                     
                     <div className="price">

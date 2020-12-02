@@ -42,8 +42,15 @@ const DetallePatinete = (props) => {
             <div>
                 <div className="form-group">
                     <label>Conductor {i}</label>
-                    <input onChange={handleChange} type="text" name={'conductor_' + i} className="form-control" required />
+                    <input onChange={handleChange} type="text" name={'conductor_' + i} className="form-control" placeholder="Nombre" required />
                 </div>
+                { preBooking.residente === 'si' && i == 1 ?
+                <div className="form-group">
+                    <input onChange={handleChange} type="text" name={'dni_' + i} className="form-control" placeholder="DNI" required />
+                </div>
+                : ''
+                }
+
                 <div class="form-check">
                   <input type="checkbox" class="form-check-input" id={'acceptance_' + i} required />
                   <label className="form-check-label" for={'acceptance_' + i}>Es mayor de 16 años</label>
