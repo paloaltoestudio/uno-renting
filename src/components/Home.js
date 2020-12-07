@@ -14,6 +14,10 @@ const Home = (props) => {
     const { transl } = useContext(LanguageContext);
     const { filterZone, zonas } = useContext(ZoneContext);
 
+    useEffect(() => {
+        setLugar(preBooking.zona_id);
+    }, [preBooking])
+
     const handleMetodo = (e) => {
 
         console.log(e.target.value)
@@ -112,7 +116,7 @@ const Home = (props) => {
                 <div className="left">
                 {metodo && metodo === 'parking_zone' ?
                     (
-                        <div class="map_wrapper">
+                        <div className="map_wrapper">
                             <Map />
                         </div>
                     ) :

@@ -8,8 +8,12 @@ const DetallePatinete = (props) => {
     const [ drivers, setDrivers ] = useState([]);
 
     const handleChange = (e) => {
-        const field = e.target.name;
-        drivers[field] = { nombre: e.target.value}
+        if(e.target.name === 'dni'){
+            drivers['conductor_1'] = { ...drivers['conductor_1'], dni: e.target.value }
+        } else {
+            const field = e.target.name;
+            drivers[field] = { nombre: e.target.value }
+        }
     }
 
     const handleSubmit = (e) => {
@@ -39,21 +43,21 @@ const DetallePatinete = (props) => {
     for( i = 1; i < driversAmount + 1 ; i++){
 
         driversFields.push(
-            <div>
+            <div key={i}>
                 <div className="form-group">
                     <label>Conductor {i}</label>
                     <input onChange={handleChange} type="text" name={'conductor_' + i} className="form-control" placeholder="Nombre" required />
                 </div>
                 { preBooking.residente === 'si' && i == 1 ?
                 <div className="form-group">
-                    <input onChange={handleChange} type="text" name={'dni_' + i} className="form-control" placeholder="DNI" required />
+                    <input onChange={handleChange} type="text" name="dni" className="form-control" placeholder="DNI" required />
                 </div>
                 : ''
                 }
 
-                <div class="form-check">
-                  <input type="checkbox" class="form-check-input" id={'acceptance_' + i} required />
-                  <label className="form-check-label" for={'acceptance_' + i}>Es mayor de 16 años</label>
+                <div className="form-check">
+                  <input type="checkbox" className="form-check-input" id={'acceptance_' + i} required />
+                  <label className="form-check-label" htmlFor={'acceptance_' + i}>Es mayor de 16 años</label>
                 </div>
             </div>
         )

@@ -1,16 +1,18 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import { GoogleMap, useLoadScript, Marker, InfoWindow } from "@react-google-maps/api";
+
+import { PreBookingContext } from '../contexts/PreBookingContext';
+import { ZoneContext } from '../contexts/ZoneContext';
 
 
 const Map = (props) => {
 
   const [selectPoint, setSelectPoint] = useState(null);
+  
+  const { preBooking, setPreBooking } = useContext(PreBookingContext);
 
-  const [parking, setParking] = useState([
-    { id: 1, lat: 6.234050, lng: -75.591068, name: 'Zona Parqueo 1', show: false },
-    { id: 2, lat: 6.233730, lng: -75.592743, name: 'Zona Parqueo 2', show: false },
-    { id: 3, lat: 6.232194, lng: -75.591820, name: 'Zona Parqueo 3', show: false }
-  ]);
+  const { zonas } = useContext(ZoneContext);
+
 
   const [location, setlocation] = useState({
     // Set Barcelona as default
@@ -18,28 +20,40 @@ const Map = (props) => {
     lng: 2.173404
   })
 
+
+  const handleClick = e => {
+    e.preventDefault();
+
+    setPreBooking({
+      ...preBooking,
+      zona_id: e.target.id
+    })
+  }
+
+
   useEffect(() => {
+    console.log('location', navigator.geolocation);
+    
     if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition((pos) => {
+        navigator.geolocation.getCurrentPosition(pos => {
             setlocation({
               lat: pos.coords.latitude, 
               lng: pos.coords.longitude
             });
-        });
+        }, error => console.log(error), {enableHighAccuracy: true});
       } else { 
         console.log("Geolocation is not supported by this browser.");
       }
-});
+  });
 
   const libraries = ['places'];
   const { isLoaded, loadError } = useLoadScript({
     googleMapsApiKey: 'AIzaSyBHOIH-d5-JeEO9ivWlLst307ymMKnHG94',
     libraries
   });
-  
 
   const openInfo = (id) => {
-    const point = parking.filter(parkingZone => parkingZone.id == id)
+    const point = zonas.filter(zona => zona.id == id)
     setSelectPoint(point[0]);
   }
 
@@ -57,11 +71,12 @@ const Map = (props) => {
       center={{ lat: location.lat, lng: location.lng }}
     >
       
-      {parking && parking.map(parkinkZone => {
+      {zonas && zonas.map((zona, index) => {
         return (
             <Marker
-              position={{ lat: parkinkZone.lat, lng: parkinkZone.lng }}
-              onClick={() => {openInfo(parkinkZone.id)}}
+              key={index}
+              position={{ lat: zona.lat, lng: zona.lng }}
+              onClick={() => {openInfo(zona.id)}}
             />
         )
       })}
@@ -72,9 +87,10 @@ const Map = (props) => {
                 options={{pixelOffset: new window.google.maps.Size(0,-30)}}
                 onCloseClick={closeInfo}
               >
-                <div>
-                  <h3>{selectPoint.name}</h3>
-                  <p>Dirección</p>
+                <div className="map_info">
+                  <h3>{selectPoint.nombre}</h3>
+                  <p>{selectPoint.direccion}</p>
+                  <a id={selectPoint.id} onClick={e => handleClick(e)} href="#" className="link">Seleccionar Zona</a>
                 </div>
               </InfoWindow>
             )} 

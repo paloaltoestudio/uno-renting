@@ -20,9 +20,9 @@ const Checkout = props => {
 
     return (
         <div className="container">
-            <div className="wrapper">
+            <div className="wrapper checkout">
                 <div className="checkout_left">
-                    <div class="checkout_wrapper">
+                    <div className="checkout_wrapper">
                         <h2>Segway MAX Pro</h2>
                         <img src={segway} alt=""/>
                         
@@ -41,37 +41,35 @@ const Checkout = props => {
                 </div>
 
                 <div className="checkout_right">
-                    <div class="checkout_wrapper">
-                        <h3>Información de Facturación</h3>
-                        
-                        <ul className="list-unstyled personal_data">
-                            <li>{user.name}</li>
-                            <li>{user.email}</li>
-                            <li>{user.phone}</li>
-                        </ul>
-                        
+                    <div className="checkout_wrapper">
+
                         <div className="totals">
-                        <p className="subtotal">
-                        <span>Subtotal</span>
-                        {preBooking.precio}.00€
-                        </p>
-                        
-                        <p className="taxes">
-                        <span>Impuestos</span>
-                        0.00€
-                        </p>
-                        
-                        <p className="total">
-                        <span>Total</span>
-                        <span>{preBooking.precio}.00€</span>
-                        </p>
+                            <h3>Totales</h3>
+
+                            <p className="subtotal">
+                                <span>Subtotal</span>
+                                {preBooking.precio}.00€
+                            </p>
+                            
+                            <p className="taxes">
+                            <span>Impuestos</span>
+                            0.00€
+                            </p>
+                            
+                            <p className="total">
+                                <span>Total</span>
+                                <span>{preBooking.precio}.00€</span>
+                            </p>
                         </div>
 
-                        <h3>Pagar</h3>
-                        
-                        <Pagos user={user} />
+                        <div className="user_info">
+                            <h3>Información de Facturación</h3>
+                            
+                            <Pagos user={user} />
 
-                        {/* <Link to="/desbloquear" className="link">Paga con Stripe</Link> */}
+                            {/* <Link to="/desbloquear" className="link">Paga con Stripe</Link> */}
+                        </div>
+
                     </div>
                 </div>
             </div>

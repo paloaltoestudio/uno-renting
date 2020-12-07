@@ -62,6 +62,14 @@ h2 {
     margin-top: 40px;
 }
 
+.map_info {
+    h3 {
+        text-align: center;
+        color: $green;
+        font-size: 18px;
+    }
+}
+
 //Layout
 
 .wrapper {
@@ -226,6 +234,11 @@ h2 {
     }
 }
 // Checkout
+
+.wrapper.checkout {
+    grid-template-columns: 40% auto;
+}
+
 .checkout_right, .checkout_left {
     .checkout_wrapper {
         background: #fff;
@@ -237,12 +250,16 @@ h2 {
             margin-bottom: 0;
         }
 
-        .form-control:focus {
+        button.form-control:focus {
             background: $green;
             color: #fff;
             outline: none;
             box-shadow: none;
             border: none;
+        }
+        .form-control:focus {
+            box-shadow: none;
+            border: 1px solid green;
         }
     }
 }
@@ -279,21 +296,22 @@ h2 {
 }
 
 .checkout_right {
-    max-width: 400px;
     z-index: 1;
 
     .checkout_wrapper {
         border-top-left-radius: 0px;
         border-bottom-left-radius: 0px;
         margin-top: 50px;
+        display: flex;
     }
     
     h3 {
-        font-size: 20px;
+        font-size: 18px;
         font-weight: bold;
         text-transform: uppercase;
         color: $grey;
         margin-top: 20px;
+        margin-bottom: 20px;
     }
 
     ul {
@@ -308,6 +326,8 @@ h2 {
     }
 
     .totals {
+        flex: 0 0 35%;
+        padding-right: 30px;
         p {
             color: $grey;
 
@@ -322,6 +342,10 @@ h2 {
             padding-top: 20px;
             margin-bottom: 40px;
         }
+    }
+
+    .user_info {
+        flex: 1 1 0;
     }
 }
 

@@ -45,6 +45,12 @@ h2 {
   margin-top: 40px;
 }
 
+.map_info h3 {
+  text-align: center;
+  color: #8bac2d;
+  font-size: 18px;
+}
+
 .wrapper {
   display: -ms-grid;
   display: grid;
@@ -207,6 +213,11 @@ h2 {
   font-weight: bold;
 }
 
+.wrapper.checkout {
+  -ms-grid-columns: 40% auto;
+      grid-template-columns: 40% auto;
+}
+
 .checkout_right .checkout_wrapper, .checkout_left .checkout_wrapper {
   background: #fff;
   border-radius: 20px;
@@ -219,13 +230,19 @@ h2 {
   margin-bottom: 0;
 }
 
-.checkout_right .checkout_wrapper .form-control:focus, .checkout_left .checkout_wrapper .form-control:focus {
+.checkout_right .checkout_wrapper button.form-control:focus, .checkout_left .checkout_wrapper button.form-control:focus {
   background: #8bac2d;
   color: #fff;
   outline: none;
   -webkit-box-shadow: none;
           box-shadow: none;
   border: none;
+}
+
+.checkout_right .checkout_wrapper .form-control:focus, .checkout_left .checkout_wrapper .form-control:focus {
+  -webkit-box-shadow: none;
+          box-shadow: none;
+  border: 1px solid green;
 }
 
 .checkout_left {
@@ -259,7 +276,6 @@ h2 {
 }
 
 .checkout_right {
-  max-width: 400px;
   z-index: 1;
 }
 
@@ -267,14 +283,18 @@ h2 {
   border-top-left-radius: 0px;
   border-bottom-left-radius: 0px;
   margin-top: 50px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
 }
 
 .checkout_right h3 {
-  font-size: 20px;
+  font-size: 18px;
   font-weight: bold;
   text-transform: uppercase;
   color: #404143;
   margin-top: 20px;
+  margin-bottom: 20px;
 }
 
 .checkout_right ul {
@@ -286,6 +306,13 @@ h2 {
 .checkout_right ul li {
   color: #404143;
   margin-bottom: 10px;
+}
+
+.checkout_right .totals {
+  -webkit-box-flex: 0;
+      -ms-flex: 0 0 35%;
+          flex: 0 0 35%;
+  padding-right: 30px;
 }
 
 .checkout_right .totals p {
@@ -301,6 +328,12 @@ h2 {
   border-top: 1px solid #404143;
   padding-top: 20px;
   margin-bottom: 40px;
+}
+
+.checkout_right .user_info {
+  -webkit-box-flex: 1;
+      -ms-flex: 1 1 0px;
+          flex: 1 1 0;
 }
 
 .wrapper.unlock {
