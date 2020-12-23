@@ -7,8 +7,7 @@ const LanguageContextProvider = props => {
 
     const [lang, setLanguage] = useState('es');
 
-    const transl = (phrase) => {
-        console.log(phrase)
+    const transl = phrase => {
         if(dictionary[phrase]){
             return dictionary[phrase][lang];
         } else {

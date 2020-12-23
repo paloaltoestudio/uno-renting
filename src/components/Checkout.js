@@ -1,16 +1,19 @@
 import React, { useState, useContext } from 'react';
 import { loadStripe } from '@stripe/stripe-js';
 import { Elements, CardElement, useStripe, useElements } from '@stripe/react-stripe-js';
-import { Link } from 'react-router-dom';
 import Pagos from './Pagos';
 import { PreBookingContext } from '../contexts/PreBookingContext';
+import { DirectionContext } from '../contexts/DirectionContext';
 import segway from '../images/segway.png';
+import { motion } from 'framer-motion';
+import { containerVariant } from './variants';
 
 const stripePromise = loadStripe('pk_test_MQVSk4TjwXbH6jhCiKL7kDLc002tjZpivx');
 
 
 const Checkout = props => {
 
+    const { isForward, setIsForward } = useContext(DirectionContext);
     const { preBooking, setPreBooking } = useContext(PreBookingContext);
     const [user, setUser] = useState({
         name: 'Carlos Pérez',
@@ -19,7 +22,13 @@ const Checkout = props => {
     })
 
     return (
-        <div className="container">
+        <motion.div 
+            variants={containerVariant}
+            initial={isForward ? 'hidden' : 'hiddenBack'}
+            animate="visible"
+            exit={isForward ? 'exit' : 'exitBack'}
+            className="container"
+        >
             <div className="wrapper checkout">
                 <div className="checkout_left">
                     <div className="checkout_wrapper">
@@ -73,7 +82,7 @@ const Checkout = props => {
                     </div>
                 </div>
             </div>
-        </div>
+        </motion.div >
     )
 }
 

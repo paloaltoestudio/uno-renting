@@ -1,10 +1,16 @@
-import React, {useContext, useState, useEffect} from 'react';
-import { withRouter, Link } from 'react-router-dom';
+import React, {useContext, useState} from 'react';
+import { withRouter } from 'react-router-dom';
+import { LanguageContext } from '../contexts/LanguageContext';
 import { PreBookingContext } from '../contexts/PreBookingContext';
+import { DirectionContext } from '../contexts/DirectionContext';
+import { motion } from 'framer-motion';
+import { containerVariant } from './variants';
 
 const DetallePatinete = (props) => {
 
+    const { transl } = useContext(LanguageContext);
     const { preBooking, setPreBooking } = useContext(PreBookingContext);
+    const { isForward, setIsForward } = useContext(DirectionContext);
     const [ drivers, setDrivers ] = useState([]);
 
     const handleChange = (e) => {
@@ -30,6 +36,8 @@ const DetallePatinete = (props) => {
             }
         )
         console.log(drivers)
+
+        setIsForward(true);
 
         props.history.push('/checkout');
     }
@@ -63,8 +71,20 @@ const DetallePatinete = (props) => {
         )
     }
 
+    const backLink = e => {
+        e.preventDefault();
+        props.history.push('/entrega');
+        setIsForward(false);
+    }
+
     return (
-        <div className="container">
+        <motion.div 
+            variants={containerVariant}
+            initial={isForward ? 'hidden' : 'hiddenBack'}
+            animate="visible"
+            exit={isForward ? 'exit' : 'exitBack'}
+            className="container"
+        >
             <div className="wrapper">
                 <div className="left">
                     <img src="../images/scooter.jpg" alt=""/>
@@ -78,13 +98,15 @@ const DetallePatinete = (props) => {
                             
                         { driversFields }
 
-                        <button className="btn btn-primary mb-2 form-control">Continuar</button>
+                        <button className="btn btn-primary mb-2 form-control">{transl('Continuar')} <i class="fas fa-chevron-right"></i></button>
                     </form>
-
-                    <Link to="/entrega">Atrás</Link>
+                    <a href="#" className="back_btn" onClick={(e) => backLink(e)} to="/">
+                        <i className="fas fa-chevron-left"></i>
+                        Atrás
+                    </a>
                 </div>
             </div>
-        </div>    
+        </motion.div >    
     )
 }
 

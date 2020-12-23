@@ -3,10 +3,14 @@ import { withRouter } from 'react-router-dom';
 import { LanguageContext } from '../contexts/LanguageContext';
 import { PreBookingContext } from '../contexts/PreBookingContext';
 import { ZoneContext } from '../contexts/ZoneContext';
+import { DirectionContext } from '../contexts/DirectionContext';
 import Map from './Map';
+import { motion } from 'framer-motion';
+import { containerVariant } from './variants';
 
-const Home = (props) => {
+const Home = props => {
 
+    const { isForward, setIsForward } = useContext(DirectionContext);
     const { preBooking, setPreBooking } = useContext(PreBookingContext);
     const [metodo, setMetodo] = useState(preBooking.metodo);
     const [lugar, setLugar] = useState(preBooking.zona_id);
@@ -75,6 +79,8 @@ const Home = (props) => {
             });
             console.log(preBooking)
 
+            setIsForward(true);
+
             props.history.push('/zona');
         }
     }
@@ -87,7 +93,12 @@ const Home = (props) => {
     const renderAddressField = () => {
         if(metodo === 'parking_zone'){
             return(
-               <div className="form-group">
+               <motion.div 
+                    initial={{ opacity: 0, y: -20 }}
+                    animate={{ opacity: 1, y: 0 }} 
+                    transition={{ type: 'spring', stiffness: 90 }}
+                    className="form-group"
+               >
                    <label htmlFor="">{transl('Lugar de Recogida')}</label>
                    <select onChange={(e) => handlePlace(e)} name="" id="" className="form-control" value={lugar} required>
                        <option value="">{transl('Dirección de Recogida')}</option>
@@ -97,31 +108,53 @@ const Home = (props) => {
                        )
                        })}
                    </select>
-               </div>
+               </motion.div>
             )
         } else if(metodo === 'delivery' || preBooking.metodo === 'delivery') {
             return (
-                <div className="form-group">
+                <motion.div 
+                    initial={{ opacity: 0, y: -20 }}
+                    animate={{ opacity: 1, y: 0 }} 
+                    transition={{ type: 'spring', stiffness: 90 }}
+                    className="form-group"
+               >
                     <label htmlFor="">{transl('Dirección de Recogida')}</label>
                     <input onChange={(e) => handleAddress(e)} type="text" className="form-control" value={preBooking.direccion} />
-                </div>
+                </motion.div>
             )
         }
     }
 
     return (
             
-        <div className="container">
+        <motion.div 
+            variants={containerVariant}
+            initial={isForward ? 'hidden' : 'hiddenBack'}
+            animate="visible"
+            exit={isForward ? 'exit' : 'exitBack'}
+            className="container"
+        >
+
             <div className="wrapper">
                 <div className="left">
+                   
                 {metodo && metodo === 'parking_zone' ?
                     (
-                        <div className="map_wrapper">
+                        <motion.div 
+                            initial={{ opacity: 0, y: 50 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            className="map_wrapper">
                             <Map />
-                        </div>
+                        </motion.div>
                     ) :
 
-                    <img src="../images/scooter.jpg" alt=""/> }
+                    <motion.img 
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }} 
+                        transition={{ type: 'spring', stiffness: 90 }}
+                        src="../images/scooter.jpg" alt=""
+                    /> 
+                    }
                 </div>
                 <div className="panel right">
                     <div className="form-home">
@@ -139,7 +172,12 @@ const Home = (props) => {
                     
                     {lugar != '' && zona &&  metodo === 'parking_zone' ?
                     
-                    <ul className="list-unstyled">
+                    <motion.ul 
+                        initial={{ opacity: 0, y: -40 }}
+                        animate={{ opacity: 1, y: 0 }} 
+                        transition={{ type: 'spring', stiffness: 90 }}
+                        className="list-unstyled"
+                    >
                         <li>
                             <h3>{transl('Dirección de Recogida')}</h3>
                             <p>{zona.direccion}</p>
@@ -148,16 +186,16 @@ const Home = (props) => {
                             <h3>{transl('Horario de Operación')}</h3>
                             <p>{zona.horario}</p>
                         </li>
-                    </ul>
+                    </motion.ul>
                     
                     : '' }
                     
-                    <button className="btn btn-primary mb-2 form-control">{transl('Continuar')}</button>
+                    <button className="btn btn-primary mb-2 form-control">{transl('Continuar')} <i class="fas fa-chevron-right"></i></button>
                     </form>
                     </div>
                 </div>
             </div>
-        </div>
+        </motion.div>
         
     )
 }

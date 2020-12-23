@@ -28,6 +28,8 @@ const Map = (props) => {
       ...preBooking,
       zona_id: e.target.id
     })
+
+    setSelectPoint(null)
   }
 
 

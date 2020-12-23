@@ -4,13 +4,18 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import setHours from "date-fns/setHours";
 import setMinutes from "date-fns/setMinutes";
+import { LanguageContext } from '../contexts/LanguageContext';
 import { PreBookingContext } from '../contexts/PreBookingContext';
 import { ZoneContext } from '../contexts/ZoneContext';
-
+import { DirectionContext } from '../contexts/DirectionContext';
+import { motion } from 'framer-motion';
+import { containerVariant } from './variants';
 
 const DetalleZona = (props) => {
-    
+
+    const { transl } = useContext(LanguageContext);
     const { preBooking, setPreBooking } = useContext(PreBookingContext);
+    const { isForward, setIsForward } = useContext(DirectionContext);
     const zonaId = preBooking.zona_id;
     const { filterZone } = useContext(ZoneContext);
 
@@ -138,7 +143,7 @@ const DetalleZona = (props) => {
     }, [precio])
 
 
-    const handleSubmit = (e) => {
+    const handleSubmit = e => {
         e.preventDefault();
 
         //let hour = hora_recogida.split(':');
@@ -155,14 +160,27 @@ const DetalleZona = (props) => {
             hora_recogida
         });
 
+        setIsForward(true);
+
         console.log(preBooking);
 
         props.history.push('/entrega');
     }
-    
+
+    const backLink = e => {
+        e.preventDefault();
+        props.history.push('/');
+        setIsForward(false);
+    }
 
     return (
-        <div className="container">
+        <motion.div 
+            variants={containerVariant}
+            initial={isForward ? 'hidden' : 'hiddenBack'}
+            animate="visible"
+            exit={isForward ? 'exit' : 'exitBack'}
+            className="container"
+        >
             <div className="wrapper">
 
                 <div className="left">
@@ -258,7 +276,12 @@ const DetalleZona = (props) => {
 
 
                         { tiempo && fecha_recogida && hora_recogida ?  
-                        <div className="col-sm-4">
+                        <motion.div 
+                            initial={{ opacity: 0, y: 10 }}
+                            animate={{ opacity: 1, y: 0 }} 
+                            transition={{ type: 'spring', stiffness: 90 }}
+                            className="col-sm-4"
+                        >
                             <div className="form-group">
                                 <label className="small" htmlFor="">Número de Patinetes</label>
                                 
@@ -267,23 +290,31 @@ const DetalleZona = (props) => {
                                     { items }
                                 </select>
                             </div> 
-                        </div>
+                        </motion.div>
                         : ''
                         }
                     </div>
                     
-                    <div className="price">
+                    <motion.div 
+                        initial={{ opacity: 0, fontSize: 0, y: 30 }}
+                        animate={{ opacity: 1, fontSize: 20, y: 0 }} 
+                        transition={{ type: 'spring', stiffness: 90 }}
+                        className="price"
+                    >
                         <p>Tarifa { precio } €</p>
-                    </div>
+                    </motion.div>
 
-                    <button className="btn btn-primary mb-2 form-control">Continuar</button>
+                    <button className="btn btn-primary mb-2 form-control">{transl('Continuar')} <i class="fas fa-chevron-right"></i></button>
                 </form>
             </div>
 
-            <Link to="/">Atrás</Link>
+            <a href="#" className="back_btn" onClick={(e) => backLink(e)} to="/">
+                <i className="fas fa-chevron-left"></i>
+                Atrás
+            </a>
             </div>
         </div>
-    </div>
+    </motion.div>
    
     )
     

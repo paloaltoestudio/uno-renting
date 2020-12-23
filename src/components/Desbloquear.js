@@ -1,4 +1,5 @@
 import React, { useState, useContext } from 'react';
+import { motion } from 'framer-motion';
 
 const Desbloquear = props => {
     
@@ -25,16 +26,21 @@ const Desbloquear = props => {
     }
 
     return (
-        <div className="container">
+        <motion.div 
+            initial={{ x:'40vw' }}
+            animate={{ x: 0 }} 
+            transition={{ type: 'spring', stiffness: 90 }}
+            className="container"
+        >
             <div className="wrapper unlock">
                 <div className="unlock_left">
-                    <div class="unlock_wrapper">
+                    <div className="unlock_wrapper">
                         <img src="../images/scooter.jpg" alt=""/>
                     </div>
                 </div>
 
                 <div className="unlock_right">
-                    <div class="unlock_wrapper">
+                    <div className="unlock_wrapper">
                         <h2>Desbloquea los patinetes</h2>
                         <p>Escoge los patinetes a desbloquear</p>
                         <ul className="list-unstyled">
@@ -46,7 +52,7 @@ const Desbloquear = props => {
                     </div>
                 </div>
             </div>
-        </div>
+        </motion.div>
     )
 }
 

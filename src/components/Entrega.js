@@ -1,15 +1,21 @@
 import React, { useState, useContext, useEffect } from 'react';
-import { withRouter, Link } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 import DatePicker from 'react-datepicker';
 import setHours from "date-fns/setHours";
 import setMinutes from "date-fns/setMinutes";
 import "react-datepicker/dist/react-datepicker.css";
+import { LanguageContext } from '../contexts/LanguageContext';
 import { PreBookingContext } from '../contexts/PreBookingContext';
 import { ZoneContext} from '../contexts/ZoneContext';
+import { DirectionContext } from '../contexts/DirectionContext';
+import { motion } from 'framer-motion';
+import { containerVariant } from './variants';
 
 const DetalleEntrega = props => {
 
+    const { transl } = useContext(LanguageContext);
     const { preBooking, setPreBooking } = useContext(PreBookingContext);
+    const { isForward, setIsForward } = useContext(DirectionContext);
     const [lugar, setLugar] = useState(preBooking.zona_entrega_id);
     const { filterZone, zonas } = useContext(ZoneContext);
     const [zona, setZona] = useState('');
@@ -116,6 +122,8 @@ const DetalleEntrega = props => {
 
         console.log(preBooking);
 
+        setIsForward(true);
+
         props.history.push('/detalle-patinete');
     }
 
@@ -124,8 +132,20 @@ const DetalleEntrega = props => {
 
     }, [lugar, zona, filterZone])
 
+    const backLink = e => {
+        e.preventDefault();
+        props.history.push('/zona');
+        setIsForward(false);
+    }
+
     return (
-        <div className="container">
+        <motion.div 
+            variants={containerVariant}
+            initial={isForward ? 'hidden' : 'hiddenBack'}
+            animate="visible"
+            exit={isForward ? 'exit' : 'exitBack'}
+            className="container"
+        >
             <div className="wrapper">
 
                 <div className="left">
@@ -174,13 +194,16 @@ const DetalleEntrega = props => {
                             />
                         </div> 
 
-                        <button className="btn btn-primary mb-2 form-control">Continuar</button>
+                        <button className="btn btn-primary mb-2 form-control">{transl('Continuar')} <i class="fas fa-chevron-right"></i></button>
 
                     </form>
-                    <Link to="/zona">Atrás</Link>
+                    <a href="#" className="back_btn" onClick={(e) => backLink(e)} to="/">
+                        <i className="fas fa-chevron-left"></i>
+                        Atrás
+                    </a>
                 </div>
             </div>
-        </div>
+        </motion.div >
     )
 }
 
