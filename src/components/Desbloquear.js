@@ -1,7 +1,11 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { motion } from 'framer-motion';
 
 const Desbloquear = props => {
+
+    useEffect(() => {
+        window.scrollTo(0, 0)
+    }, [])
     
     const [ lock, setLock ] = useState({
         EU001: true,

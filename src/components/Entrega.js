@@ -13,6 +13,10 @@ import { containerVariant } from './variants';
 
 const DetalleEntrega = props => {
 
+    useEffect(() => {
+        window.scrollTo(0, 0)
+    }, [])
+
     const { transl } = useContext(LanguageContext);
     const { preBooking, setPreBooking } = useContext(PreBookingContext);
     const { isForward, setIsForward } = useContext(DirectionContext);

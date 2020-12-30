@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import { withRouter } from 'react-router-dom'
 import { LanguageContext } from '../contexts/LanguageContext';
 import { DirectionContext } from '../contexts/DirectionContext';
@@ -8,6 +8,10 @@ import { containerVariant } from './variants';
 
 
 const Login = props => {
+    useEffect(() => {
+        window.scrollTo(0, 0)
+    }, [])
+
     const { transl } = useContext(LanguageContext);
     const { user, setUser } = useContext(LoginContext);
     const [ userInfo, setUserInfo ] = useState({});

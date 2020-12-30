@@ -13,6 +13,10 @@ import { containerVariant } from './variants';
 
 const DetalleZona = (props) => {
 
+    useEffect(() => {
+        window.scrollTo(0, 0)
+    }, [])
+
     const { transl } = useContext(LanguageContext);
     const { preBooking, setPreBooking } = useContext(PreBookingContext);
     const { isForward, setIsForward } = useContext(DirectionContext);
@@ -280,7 +284,7 @@ const DetalleZona = (props) => {
                             initial={{ opacity: 0, y: 10 }}
                             animate={{ opacity: 1, y: 0 }} 
                             transition={{ type: 'spring', stiffness: 90 }}
-                            className="col-sm-4"
+                            className="col-sm-8"
                         >
                             <div className="form-group">
                                 <label className="small" htmlFor="">Número de Patinetes</label>

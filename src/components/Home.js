@@ -9,6 +9,9 @@ import { motion } from 'framer-motion';
 import { containerVariant } from './variants';
 
 const Home = props => {
+    useEffect(() => {
+        window.scrollTo(0, 0)
+    }, [])
 
     const { isForward, setIsForward } = useContext(DirectionContext);
     const { preBooking, setPreBooking } = useContext(PreBookingContext);
@@ -62,12 +65,12 @@ const Home = props => {
                 metodo_entrega: metodo
             });
 
+            localStorage.setItem("preBooking", preBooking)
+
             console.log(preBooking)
             props.history.push('/zona');
-
             
         } else {
-
             setPreBooking({
                 ...preBooking,
                 zona: zona.nombre,
@@ -77,6 +80,9 @@ const Home = props => {
                 zona_entrega_id: zona.id,
                 direccion_entrega: zona.direccion,
             });
+
+            localStorage.setItem("preBooking", JSON.stringify(preBooking))
+            
             console.log(preBooking)
 
             setIsForward(true);

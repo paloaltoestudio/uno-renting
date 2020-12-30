@@ -149,9 +149,9 @@ h2 {
 }
 
 .panel h2 {
-  color: #404143;
+  color: #8bac2d;
   text-transform: uppercase;
-  font-size: 20px;
+  font-size: 18px;
   font-weight: bold;
   margin-bottom: 20px;
   margin-top: 10px;
@@ -160,7 +160,7 @@ h2 {
 .panel form label {
   color: #404143;
   text-transform: uppercase;
-  font-size: 18px;
+  font-size: 14px;
   font-weight: bold;
   display: block;
 }
@@ -171,7 +171,8 @@ h2 {
 
 .panel form input.form-control, .panel form select {
   border-color: #f3de34;
-  padding: 10px 12px;
+  padding: 6px 12px;
+  height: auto;
 }
 
 .panel form input.form-control:focus, .panel form select:focus {
@@ -215,7 +216,7 @@ h2 {
 .panel ul li h3 {
   color: #404143;
   text-transform: uppercase;
-  font-size: 18px;
+  font-size: 14px;
   font-weight: bold;
 }
 
@@ -315,6 +316,7 @@ h2 {
   display: block;
   margin: auto;
   margin-bottom: 40px;
+  width: 100%;
 }
 
 .checkout_left h2 {
@@ -324,7 +326,7 @@ h2 {
   text-transform: uppercase;
   text-align: center;
   font-weight: bold;
-  color: #404143;
+  color: #8bac2d;
   border-bottom: 2px solid #f3de34;
 }
 
@@ -354,7 +356,7 @@ h2 {
   font-size: 18px;
   font-weight: bold;
   text-transform: uppercase;
-  color: #404143;
+  color: #8bac2d;
   margin-top: 20px;
   margin-bottom: 20px;
 }

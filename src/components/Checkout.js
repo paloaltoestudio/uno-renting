@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { loadStripe } from '@stripe/stripe-js';
 import { Elements, CardElement, useStripe, useElements } from '@stripe/react-stripe-js';
 import Pagos from './Pagos';
@@ -12,6 +12,10 @@ const stripePromise = loadStripe('pk_test_MQVSk4TjwXbH6jhCiKL7kDLc002tjZpivx');
 
 
 const Checkout = props => {
+
+    useEffect(() => {
+        window.scrollTo(0, 0)
+    }, [])
 
     const { isForward, setIsForward } = useContext(DirectionContext);
     const { preBooking, setPreBooking } = useContext(PreBookingContext);

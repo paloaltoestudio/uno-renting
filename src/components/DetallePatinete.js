@@ -1,4 +1,4 @@
-import React, {useContext, useState} from 'react';
+import React, {useContext, useState, useEffect} from 'react';
 import { withRouter } from 'react-router-dom';
 import { LanguageContext } from '../contexts/LanguageContext';
 import { PreBookingContext } from '../contexts/PreBookingContext';
@@ -7,6 +7,10 @@ import { motion } from 'framer-motion';
 import { containerVariant } from './variants';
 
 const DetallePatinete = (props) => {
+
+    useEffect(() => {
+        window.scrollTo(0, 0)
+    }, [])
 
     const { transl } = useContext(LanguageContext);
     const { preBooking, setPreBooking } = useContext(PreBookingContext);
@@ -91,7 +95,7 @@ const DetallePatinete = (props) => {
                 </div>
 
                 <div className="panel right scooter_detail">
-                    <h3>Patinetes</h3>
+                    <h2>Patinetes</h2>
                     <p>Por favor ingresa el conductor de cada patinete</p>
 
                     <form onSubmit={(e) => {handleSubmit(e)}}>

@@ -7,6 +7,7 @@ import Popper from 'popper.js';
 import 'bootstrap/dist/js/bootstrap.bundle.min';
 import './index.css';
 import './style.css';
+import './responsive.css';
 import App from './App';
 
 ReactDOM.render(

@@ -159,9 +159,9 @@ h2 {
     box-shadow: 0 0 20px rgba($color: #000000, $alpha: 0.08);
 
     h2 {
-        color: $grey;
+        color: $green;
         text-transform: uppercase;
-        font-size: 20px;
+        font-size: 18px;
         font-weight: bold;  
         margin-bottom: 20px;
         margin-top: 10px;
@@ -171,7 +171,7 @@ h2 {
         label {
             color: $grey;
             text-transform: uppercase;
-            font-size: 18px;
+            font-size: 14px;
             font-weight: bold;
             display: block;
 
@@ -182,7 +182,8 @@ h2 {
 
         input.form-control, select {
             border-color: $yellow;
-            padding: 10px 12px;
+            padding: 6px 12px;
+            height: auto;
 
             &:focus {
                 box-shadow: 0 0 5px $green;
@@ -221,7 +222,7 @@ h2 {
             h3 {
                 color: $grey;
                 text-transform: uppercase;
-                font-size: 18px;
+                font-size: 14px;
                 font-weight: bold; 
             }
             p {
@@ -326,6 +327,7 @@ h2 {
         display: block;
         margin: auto;
         margin-bottom: 40px;
+        width: 100%;
     }
 
     h2 {
@@ -335,7 +337,7 @@ h2 {
         text-transform: uppercase;
         text-align: center;
         font-weight: bold;
-        color: $grey;
+        color: $green;
         border-bottom: 2px solid $yellow;
     }
 
@@ -364,7 +366,7 @@ h2 {
         font-size: 18px;
         font-weight: bold;
         text-transform: uppercase;
-        color: $grey;
+        color: $green;
         margin-top: 20px;
         margin-bottom: 20px;
     }
