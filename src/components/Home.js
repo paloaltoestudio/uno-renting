@@ -196,7 +196,7 @@ const Home = props => {
                     
                     : '' }
                     
-                    <button className="btn btn-primary mb-2 form-control">{transl('Continuar')} <i class="fas fa-chevron-right"></i></button>
+                    <button className="btn btn-primary mb-2 form-control">{transl('Continuar')} <i className="fas fa-chevron-right"></i></button>
                     </form>
                     </div>
                 </div>

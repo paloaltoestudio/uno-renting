@@ -50,6 +50,15 @@ h2 {
   font-size: 18px;
 }
 
+.marker_btn {
+  background: none;
+  border: none;
+}
+
+.marker_btn:active, .marker_btn:focus, .marker_btn:hover {
+  outline-color: #f3de34;
+}
+
 .wrapper {
   display: -ms-grid;
   display: grid;

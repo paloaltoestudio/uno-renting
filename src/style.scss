@@ -69,6 +69,15 @@ h2 {
     }
 }
 
+.marker_btn {
+    background: none;
+    border: none;
+
+    &:active, &:focus, &:hover {
+        outline-color: $yellow;
+    }
+}
+
 //Layout
 
 .wrapper {
