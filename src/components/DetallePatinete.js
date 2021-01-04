@@ -19,33 +19,64 @@ const DetallePatinete = (props) => {
 
     const handleChange = (e) => {
         if(e.target.name === 'dni'){
-            drivers['conductor_1'] = { ...drivers['conductor_1'], dni: e.target.value }
+            setPreBooking(
+                {
+                    ...preBooking,
+                    conductores_patinetes: {
+                        ...preBooking.conductores_patinetes,
+                        ['conductor_1']: { ...preBooking.conductores_patinetes['conductor_1'], dni: e.target.value }
+                    }
+                }
+            );
         } else {
-            const field = e.target.name;
-            drivers[field] = { nombre: e.target.value }
+
+            setPreBooking(
+                {
+                    ...preBooking,
+                    conductores_patinetes: {
+                        ...preBooking.conductores_patinetes,
+                        [e.target.name]: { ...preBooking.conductores_patinetes[e.target.name], nombre: e.target.value }
+                    }
+                }
+            );
         }
+        
     }
+
+    const handleSelect = (e) => {
+        setPreBooking(
+            {
+                ...preBooking,
+                conductores_patinetes: {
+                    ...preBooking.conductores_patinetes,
+                    [e.target.id]: { ...preBooking.conductores_patinetes[e.target.id], mayor_16: e.target.checked }
+                }
+            }
+        );
+    }
+
+    console.log(preBooking)
 
     const handleSubmit = (e) => {
         e.preventDefault();
         
         setDrivers([
             ...drivers
-        ])
+        ]);
 
         setPreBooking(
             {
                 ...preBooking,
-                conductores_patinetes: drivers
+                conductores_patinetes: {...preBooking.conductores_patinetes}
             }
-        )
-        console.log(drivers)
+        );
+
+        console.log('conductores', drivers)
 
         setIsForward(true);
 
         props.history.push('/checkout');
     }
-    
 
     // Fieldset for drivers based on scooter amount
     const driversFields = [];
@@ -58,18 +89,18 @@ const DetallePatinete = (props) => {
             <div key={i}>
                 <div className="form-group">
                     <label>Conductor {i}</label>
-                    <input onChange={handleChange} type="text" name={'conductor_' + i} className="form-control" placeholder="Nombre" required />
+                    <input onChange={handleChange} type="text" name={'conductor_' + i} className="form-control" value={preBooking.conductores_patinetes['conductor_' + i] ? preBooking.conductores_patinetes['conductor_' + i].nombre : ''} placeholder="Nombre" required />
                 </div>
                 { preBooking.residente === 'si' && i == 1 ?
                 <div className="form-group">
-                    <input onChange={handleChange} type="text" name="dni" className="form-control" placeholder="DNI" required />
+                    <input onChange={handleChange} type="text" name="dni" className="form-control" value={preBooking.conductores_patinetes['conductor_1'] ? preBooking.conductores_patinetes['conductor_1'].dni : ''} placeholder="DNI" required />
                 </div>
                 : ''
                 }
 
                 <div className="form-check">
-                  <input type="checkbox" className="form-check-input" id={'acceptance_' + i} required />
-                  <label className="form-check-label" htmlFor={'acceptance_' + i}>Es mayor de 16 años</label>
+                  <input onChange={handleSelect} type="checkbox" className="form-check-input" id={'conductor_' + i} checked={preBooking.conductores_patinetes['conductor_' + i]['mayor_16'] ? true : false } required />
+                  <label className="form-check-label" htmlFor={'conductor_' + i}>Es mayor de 16 años</label>
                 </div>
             </div>
         )
@@ -102,7 +133,7 @@ const DetallePatinete = (props) => {
                             
                         { driversFields }
 
-                        <button className="btn btn-primary mb-2 form-control">{transl('Continuar')} <i class="fas fa-chevron-right"></i></button>
+                        <button className="btn btn-primary mb-2 form-control">{transl('Continuar')} <i className="fas fa-chevron-right"></i></button>
                     </form>
                     <a href="#" className="back_btn" onClick={(e) => backLink(e)} to="/">
                         <i className="fas fa-chevron-left"></i>

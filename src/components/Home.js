@@ -11,8 +11,9 @@ import { containerVariant } from './variants';
 const Home = props => {
     useEffect(() => {
         window.scrollTo(0, 0)
-    }, [])
+    }, []);
 
+    
     const { isForward, setIsForward } = useContext(DirectionContext);
     const { preBooking, setPreBooking } = useContext(PreBookingContext);
     const [metodo, setMetodo] = useState(preBooking.metodo);
@@ -23,7 +24,17 @@ const Home = props => {
 
     useEffect(() => {
         setLugar(preBooking.zona_id);
-    }, [preBooking])
+    }, [preBooking.zona_id]);
+    
+    useEffect(() => {
+        if(localStorage.getItem("method")){
+            setMetodo(JSON.parse(localStorage.getItem("method")));
+        }
+    }, []);
+
+    useEffect(() => {
+        localStorage.setItem("method", JSON.stringify(metodo));
+    }, [metodo])
 
     const handleMetodo = (e) => {
 
@@ -64,9 +75,6 @@ const Home = props => {
                 zona_id: '',
                 metodo_entrega: metodo
             });
-
-            localStorage.setItem("preBooking", preBooking)
-
             console.log(preBooking)
             props.history.push('/zona');
             
@@ -80,8 +88,6 @@ const Home = props => {
                 zona_entrega_id: zona.id,
                 direccion_entrega: zona.direccion,
             });
-
-            localStorage.setItem("preBooking", JSON.stringify(preBooking))
             
             console.log(preBooking)
 

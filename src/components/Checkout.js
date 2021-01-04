@@ -23,7 +23,9 @@ const Checkout = props => {
         name: 'Carlos Pérez',
         email: 'carlos@gmail.com',
         phone: '+34 12345678'
-    })
+    });
+
+    console.log(preBooking);
 
     return (
         <motion.div 

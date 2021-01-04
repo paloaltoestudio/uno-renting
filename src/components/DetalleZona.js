@@ -20,10 +20,11 @@ const DetalleZona = (props) => {
     const { transl } = useContext(LanguageContext);
     const { preBooking, setPreBooking } = useContext(PreBookingContext);
     const { isForward, setIsForward } = useContext(DirectionContext);
+
     const zonaId = preBooking.zona_id;
     const { filterZone } = useContext(ZoneContext);
 
-    console.log(preBooking)
+    console.log(preBooking);
 
     // Get updated zone info
     const zona = filterZone(zonaId);
@@ -67,7 +68,15 @@ const DetalleZona = (props) => {
         setPreBooking({
             ...preBooking,
             [e.target.name]: e.target.value
-        })
+        });
+
+        if(e.target.name === 'numero_patinetes'){
+            setPreBooking({
+                ...preBooking,
+                'numero_cargadores': e.target.value,
+                'numero_patinetes': e.target.value
+            }); 
+        }
     }
         
     const [dateInfo, setDateInfo] = useState({
@@ -130,6 +139,7 @@ const DetalleZona = (props) => {
             props.history.push('/');
         }
     }
+
     scooterNumberOptions();
 
 
@@ -158,7 +168,7 @@ const DetalleZona = (props) => {
             ...preBooking,
             residente,
             tiempo,
-            numero_cargadores: numero_patinetes, 
+            numero_cargadores: preBooking.numero_patinetes, 
             numero_patinetes, 
             fecha_recogida, 
             hora_recogida
@@ -308,7 +318,7 @@ const DetalleZona = (props) => {
                         <p>Tarifa { precio } €</p>
                     </motion.div>
 
-                    <button className="btn btn-primary mb-2 form-control">{transl('Continuar')} <i class="fas fa-chevron-right"></i></button>
+                    <button className="btn btn-primary mb-2 form-control">{transl('Continuar')} <i className="fas fa-chevron-right"></i></button>
                 </form>
             </div>
 
