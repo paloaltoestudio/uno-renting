@@ -1,0 +1,27 @@
+{
+  "files": {
+    "main.css": "/uno-renting/static/css/main.c3cda2f8.chunk.css",
+    "main.js": "/uno-renting/static/js/main.98500565.chunk.js",
+    "main.js.map": "/uno-renting/static/js/main.98500565.chunk.js.map",
+    "runtime-main.js": "/uno-renting/static/js/runtime-main.e81dfd4a.js",
+    "runtime-main.js.map": "/uno-renting/static/js/runtime-main.e81dfd4a.js.map",
+    "static/css/2.b56a0318.chunk.css": "/uno-renting/static/css/2.b56a0318.chunk.css",
+    "static/js/2.13c2b068.chunk.js": "/uno-renting/static/js/2.13c2b068.chunk.js",
+    "static/js/2.13c2b068.chunk.js.map": "/uno-renting/static/js/2.13c2b068.chunk.js.map",
+    "index.html": "/uno-renting/index.html",
+    "precache-manifest.e89c0821796b546e7db1ef9646a32681.js": "/uno-renting/precache-manifest.e89c0821796b546e7db1ef9646a32681.js",
+    "service-worker.js": "/uno-renting/service-worker.js",
+    "static/css/2.b56a0318.chunk.css.map": "/uno-renting/static/css/2.b56a0318.chunk.css.map",
+    "static/css/main.c3cda2f8.chunk.css.map": "/uno-renting/static/css/main.c3cda2f8.chunk.css.map",
+    "static/js/2.13c2b068.chunk.js.LICENSE.txt": "/uno-renting/static/js/2.13c2b068.chunk.js.LICENSE.txt",
+    "static/media/style.css": "/uno-renting/static/media/dk_buntaro-webfont.774938fb.ttf",
+    "static/media/segway.png": "/uno-renting/static/media/segway.0cebf1f2.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.e81dfd4a.js",
+    "static/css/2.b56a0318.chunk.css",
+    "static/js/2.13c2b068.chunk.js",
+    "static/css/main.c3cda2f8.chunk.css",
+    "static/js/main.98500565.chunk.js"
+  ]
+}
