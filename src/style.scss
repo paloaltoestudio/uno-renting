@@ -267,6 +267,17 @@ h2 {
     right: 0;
 }
 
+// Zone details
+.container.zone {
+    .wrapper {
+        grid-template-columns: 50% 50%;
+
+        .panel {
+            max-width: 100%;
+        }
+    }
+}
+
 // Scooter detail
 
 .scooter_detail {

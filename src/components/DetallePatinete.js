@@ -99,7 +99,7 @@ const DetallePatinete = (props) => {
                 }
 
                 <div className="form-check">
-                  <input onChange={handleSelect} type="checkbox" className="form-check-input" id={'conductor_' + i} checked={preBooking.conductores_patinetes['conductor_' + i]['mayor_16'] ? true : false } required />
+                  <input onChange={handleSelect} type="checkbox" className="form-check-input" id={'conductor_' + i} checked={preBooking.conductores_patinetes['conductor_' + i] && preBooking.conductores_patinetes['conductor_' + i]['mayor_16'] ? true : false } required />
                   <label className="form-check-label" htmlFor={'conductor_' + i}>Es mayor de 16 años</label>
                 </div>
             </div>

@@ -260,6 +260,15 @@ h2 {
   right: 0;
 }
 
+.container.zone .wrapper {
+  -ms-grid-columns: 50% 50%;
+      grid-template-columns: 50% 50%;
+}
+
+.container.zone .wrapper .panel {
+  max-width: 100%;
+}
+
 .scooter_detail h3 {
   text-transform: uppercase;
   font-weight: bold;

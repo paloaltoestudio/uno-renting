@@ -193,7 +193,7 @@ const DetalleZona = (props) => {
             initial={isForward ? 'hidden' : 'hiddenBack'}
             animate="visible"
             exit={isForward ? 'exit' : 'exitBack'}
-            className="container"
+            className="container zone"
         >
             <div className="wrapper">
 
