@@ -1,0 +1,27 @@
+{
+  "files": {
+    "main.css": "/static/css/main.8cc3c7fe.chunk.css",
+    "main.js": "/static/js/main.091fdd61.chunk.js",
+    "main.js.map": "/static/js/main.091fdd61.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.3e42ff72.js",
+    "runtime-main.js.map": "/static/js/runtime-main.3e42ff72.js.map",
+    "static/css/2.b56a0318.chunk.css": "/static/css/2.b56a0318.chunk.css",
+    "static/js/2.71adc21d.chunk.js": "/static/js/2.71adc21d.chunk.js",
+    "static/js/2.71adc21d.chunk.js.map": "/static/js/2.71adc21d.chunk.js.map",
+    "index.html": "/index.html",
+    "precache-manifest.2acf266486f7ec34684ea1155dca5c1b.js": "/precache-manifest.2acf266486f7ec34684ea1155dca5c1b.js",
+    "service-worker.js": "/service-worker.js",
+    "static/css/2.b56a0318.chunk.css.map": "/static/css/2.b56a0318.chunk.css.map",
+    "static/css/main.8cc3c7fe.chunk.css.map": "/static/css/main.8cc3c7fe.chunk.css.map",
+    "static/js/2.71adc21d.chunk.js.LICENSE.txt": "/static/js/2.71adc21d.chunk.js.LICENSE.txt",
+    "static/media/style.css": "/static/media/dk_buntaro-webfont.774938fb.ttf",
+    "static/media/segway.png": "/static/media/segway.0cebf1f2.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.3e42ff72.js",
+    "static/css/2.b56a0318.chunk.css",
+    "static/js/2.71adc21d.chunk.js",
+    "static/css/main.8cc3c7fe.chunk.css",
+    "static/js/main.091fdd61.chunk.js"
+  ]
+}
