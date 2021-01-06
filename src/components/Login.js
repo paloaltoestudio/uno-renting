@@ -1,5 +1,5 @@
 import React, { useContext, useState, useEffect } from 'react';
-import { withRouter } from 'react-router-dom'
+import { withRouter, Link } from 'react-router-dom'
 import { LanguageContext } from '../contexts/LanguageContext';
 import { DirectionContext } from '../contexts/DirectionContext';
 import { LoginContext } from '../contexts/LoginContext';
@@ -15,7 +15,7 @@ const Login = props => {
     const { transl } = useContext(LanguageContext);
     const { user, setUser } = useContext(LoginContext);
     const [ userInfo, setUserInfo ] = useState({});
-    const { isForward, setIsForward } = useContext(DirectionContext);
+    const { isForward } = useContext(DirectionContext);
 
     const handleChange = e => {
         setUserInfo({
@@ -100,7 +100,7 @@ const Login = props => {
                     </div>
 
                     <h2 className="text-center">¿No estás registrado?</h2>
-                    <a href="" className="link secondary">Regístrate</a>
+                    <Link to="/signup" className="link secondary">Regístrate</Link>
 
                 </div>
 

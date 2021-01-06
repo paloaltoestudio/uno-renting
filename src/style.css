@@ -144,6 +144,7 @@ h2 {
 }
 
 .panel {
+  position: relative;
   -ms-grid-column: 2;
   -ms-grid-column-span: 1;
   grid-column: 2/3;
@@ -152,9 +153,19 @@ h2 {
   max-width: 500px;
   padding: 20px 40px;
   background: #fff;
-  border-radius: 20px;
-  -webkit-box-shadow: 0 0 20px rgba(0, 0, 0, 0.08);
-          box-shadow: 0 0 20px rgba(0, 0, 0, 0.08);
+  border-radius: 10px;
+  -webkit-box-shadow: 0 0 20px rgba(92, 98, 0, 0.2);
+          box-shadow: 0 0 20px rgba(92, 98, 0, 0.2);
+}
+
+.panel:before {
+  content: '';
+  position: absolute;
+  top: 20px;
+  left: 0;
+  width: 6px;
+  height: 92%;
+  background: #f3de34;
 }
 
 .panel h2 {
@@ -522,8 +533,121 @@ h2 {
   font-size: 16px;
 }
 
+.PhoneInput {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.PhoneInputCountry {
+  position: relative;
+  -ms-flex-item-align: stretch;
+      align-self: stretch;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-right: 10px;
+}
+
+.PhoneInputCountryIcon {
+  width: 40px;
+}
+
+.PhoneInputCountrySelectArrow {
+  display: block;
+  content: '';
+  width: 0.3em;
+  height: 0.3em;
+  margin-left: 0.35em;
+  border-style: solid;
+  border-color: inherit;
+  border-top-width: 0;
+  border-bottom-width: 1px;
+  border-left-width: 0;
+  border-right-width: 1px;
+  -webkit-transform: rotate(45deg);
+  transform: rotate(45deg);
+  opacity: 0.45;
+}
+
+.PhoneInputCountrySelect {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  z-index: 1;
+  border: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.PhoneInputCountryIconImg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.PhoneInputInput {
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  min-width: 0;
+  border: 1px solid #f3de34;
+  border-radius: 3px;
+  height: 40px;
+  padding-left: 10px;
+}
+
+.PhoneInputInput:focus {
+  border-color: #8bac2d;
+  outline: none;
+  -webkit-box-shadow: 0 0 5px #8bac2d;
+          box-shadow: 0 0 5px #8bac2d;
+}
+
+.container.cancel_booking {
+  max-width: 760px;
+}
+
+.container.cancel_booking .wrapper {
+  -ms-grid-columns: 40% 60%;
+      grid-template-columns: 40% 60%;
+}
+
+.container.cancel_booking .wrapper .left img {
+  width: 100%;
+}
+
+.container.cancel_booking .wrapper .panel.right {
+  max-width: 100%;
+}
+
+.container.cancel_booking .wrapper .panel.right h2 {
+  text-align: center;
+  font-size: 24px;
+}
+
+.container.cancel_booking .wrapper .panel.right h3 {
+  font-size: 18px;
+  font-weight: 600;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.container.cancel_booking .wrapper .panel.right h3 span {
+  display: block;
+  margin-top: 8px;
+}
+
 footer {
-  margin-top: 100px;
+  margin-top: 50px;
 }
 
 footer p {

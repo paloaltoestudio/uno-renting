@@ -158,14 +158,25 @@ h2 {
 }
 
 .panel {
+    position: relative;
     grid-column: 2/3;
     width: 100%;
     height: 105%;
     max-width: 500px;
     padding: 20px 40px;
     background: #fff;
-    border-radius: 20px;
-    box-shadow: 0 0 20px rgba($color: #000000, $alpha: 0.08);
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba($color: #5c6200, $alpha: 0.2);
+
+    &:before {
+        content: '';
+        position: absolute;
+        top: 20px;
+        left: 0;
+        width: 6px;
+        height: 92%;
+        background: $yellow;
+    }
 
     h2 {
         color: $green;
@@ -523,11 +534,115 @@ h2 {
     }
 }
 
+// Signup
+
+.PhoneInput {
+    display: flex;
+    align-items: center;
+}
+
+.PhoneInputCountry {
+    position: relative;
+    align-self: stretch;
+    display: flex;
+    align-items: center;
+    margin-right: 10px;
+}
+
+.PhoneInputCountryIcon {
+    width: 40px;
+}
+
+.PhoneInputCountrySelectArrow {
+    display: block;
+    content: '';
+    width: 0.3em;
+    height: 0.3em;
+    margin-left: 0.35em;
+    border-style: solid;
+    border-color: inherit;
+    border-top-width: 0;
+    border-bottom-width: 1px;
+    border-left-width: 0;
+    border-right-width: 1px;
+    -webkit-transform: rotate(45deg);
+    transform: rotate(45deg);
+    opacity: 0.45;
+}
+
+.PhoneInputCountrySelect {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    z-index: 1;
+    border: 0;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.PhoneInputCountryIconImg {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+.PhoneInputInput {
+    flex: 1;
+    min-width: 0;
+    border: 1px solid $yellow;
+    border-radius: 3px;
+    height: 40px;
+    padding-left: 10px;
+
+    &:focus {
+        border-color: $green;
+        outline: none;
+        box-shadow: 0 0 5px #8bac2d;
+    }
+}
+
+// Cancel Booking
+.container.cancel_booking {
+    max-width: 760px;
+    .wrapper {
+        grid-template-columns: 40% 60%;
+
+        .left {
+            img {
+                width: 100%;
+            }
+        }
+
+        .panel.right {
+            max-width: 100%;
+
+            h2 {
+                text-align: center;
+                font-size: 24px;
+            }
+
+            h3 {
+                font-size: 18px;
+                font-weight: 600;
+                text-align: center;
+                margin-bottom: 20px;
+
+                span {
+                    display: block;
+                    margin-top: 8px;
+                }
+            }
+        }
+    }
+}
+
 
 //Footer
 
 footer {
-    margin-top: 100px;
+    margin-top: 50px;
     p {
         color: $grey;
         text-transform: uppercase;

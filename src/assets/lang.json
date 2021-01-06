@@ -55,5 +55,10 @@
         {
             "es": "Entrega a domicilio", 
             "en": "Home Delivery"
+        },
+    "Regístrate": 
+        {
+            "es": "Regístrate", 
+            "en": "Sign Up"
         }
 }
