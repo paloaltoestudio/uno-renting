@@ -2,7 +2,7 @@
   "name": "uno",
   "version": "0.1.0",
   "private": true,
-  "homepage": "http//paloaltoestudio.github.io/uno-renting",
+  "homepage": "https://paloaltoestudio.github.io/uno-renting",
   "dependencies": {
     "@genyus/country-code": "^1.0.2",
     "@react-google-maps/api": "^1.13.0",
